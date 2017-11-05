@@ -4,11 +4,11 @@ import { graphiqlExpress, graphqlExpress } from 'apollo-server-express';
 
 import schema from './schema';
 
-const PORT = 3000;
+if (process.env.NODE_ENV === 'development') require('dotenv').config();
 
 const app = express();
 
 app.use('/graphql', bodyParser.json(), graphqlExpress({schema}));
 app.use('/graphiql', graphiqlExpress({endpointURL: '/graphql'}));
 
-app.listen(PORT, () => console.log(`Listening on ${PORT}...`));
+app.listen(process.env.PORT, () => console.log(`Listening on ${process.env.PORT}...`));
