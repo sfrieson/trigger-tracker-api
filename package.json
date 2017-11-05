@@ -1,0 +1,22 @@
+{
+  "name": "trigger-tracker-api",
+  "version": "1.0.0",
+  "description": "TriggerTracker App backend.",
+  "main": "index.js",
+  "repository": "git@github.com:sfrieson/trigger-tracker-api.git",
+  "author": "Steven Frieson <sfrieson@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "babel-node index.js"
+  },
+  "dependencies": {
+    "apollo-server-express": "^1.2.0",
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "graphql": "^0.11.7",
+    "graphql-tools": "^2.7.2",
+    "pg": "^7.4.0"
+  }
+}
