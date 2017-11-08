@@ -8,5 +8,5 @@ This repository is for the API portion of the app where requests are received fr
 
 - GraphQL
 I really enjoy the ideas behind GraphQL and Apollo Server (Express) made it quick and easy to get the server up and running for all I needed.
-- PostgreSQL
-I am using this project as a way to practice SQL queries, so there is no ORM except the one I'm creating for only this app's use cases. Some inspiration is being taken from the Ruby on Rails structure.
+- MongoDB
+I generally don't like using NoSQL databases, but after starting this project with PostgreSQL, I realized that this is actually quite a good use for NoSQL.  There are no relationships involved (at least yet). This project will mainly just be a collection of data.  We'll see how well this works.

@@ -1,43 +1,29 @@
-import db from '../db';
+import Report from '../db/schema/report';
+import Record from '../db/schema/record';
 
 const defaultMaxResults = 10;
 
 export default {
   Query: {
     records: function (_, {count = defaultMaxResults}) {
-      return db.query({
-        text: 'SELECT * FROM records LIMIT $1;',
-        values: [count]
-      }).then(res => res.rows);
+      return Record.find()
+      .limit(count);
     },
     reports: function (_, {count = defaultMaxResults}) {
-      return db.query({
-        text: 'SELECT * FROM reports LIMIT $1;',
-        values: [count]
-      }).then(res => res.rows);
+      return Report.find()
+      .limit(count);
     }
   },
   Mutation: {
     record: function (_, {data}) {
-      const keys = Object.keys(data);
+      const newRecord = new Record(data);
 
-      return db.query({
-        text: `INSERT INTO
-          records (${keys.join(', ')})
-          VALUES (${keys.map((_, i) => `$${i + 1}`).join(', ')});`,
-        values: keys.map(key => data[key])
-      }).then(() => true)
-      .catch(() => false);
+      return newRecord.save();
     },
     report: function (_, {data}) {
-      const keys = Object.keys(data);
+      const newReport = new Report(data);
 
-      return db.query({
-        text: `INSERT INTO
-          reports (${keys.join(', ')})
-          VALUES (${keys.map((_, i) => `$${i + 1}`).join(', ')});`,
-        values: keys.map(key => data[key])
-      });
+      return newReport.save();
     }
   }
 };
