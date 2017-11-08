@@ -8,7 +8,6 @@
   "license": "MIT",
   "scripts": {
     "start": "babel-node index.js",
-    "db": "babel-node db/tasks.js",
     "dev": "nodemon --exec babel-node index.js"
   },
   "dependencies": {
@@ -19,7 +18,7 @@
     "express": "^4.16.2",
     "graphql": "^0.11.7",
     "graphql-tools": "^2.7.2",
-    "pg": "^7.4.0"
+    "mongoose": "^4.13.0"
   },
   "devDependencies": {
     "dotenv": "^4.0.0",
