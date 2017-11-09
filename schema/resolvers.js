@@ -56,25 +56,26 @@ export default {
         filters.timestamp.$gt = filters.timestamp.$lt - (days * dayLength) - (hours * hrLength) - (minutes * minLength);
       }
 
-      console.log('History filters, now:' + Date.now(), JSON.stringify(filters, null, 2));
-
       let records = await Record.find(filters).sort({timestamp: -1}).limit(count);
       let reports = await Report.find(filters).sort({timestamp: -1}).limit(count);
       const history = [...records, ...reports].sort((a, b) => b.timestamp > a.timestamp);
-
       return history.slice(0, count);
     }
   },
   Mutation: {
+    batchRecord: async function (_, {data}) {
+      const newRecords = await Record.bulkWrite(data.map(d => ({insertOne: {document: d}})));
+      return newRecords.n;
+    },
+    batchReport: async function (_, {data}) {
+      const newReports = await Report.bulkWrite(data.map(d => ({insertOne: {document: d}})));
+      return newReports.n;
+    },
     record: function (_, {data}) {
-      const newRecord = new Record(data);
-
-      return newRecord.save();
+      return Record.create(data);
     },
     report: function (_, {data}) {
-      const newReport = new Report(data);
-
-      return newReport.save();
+      return Report.create(data);
     }
   }
 };

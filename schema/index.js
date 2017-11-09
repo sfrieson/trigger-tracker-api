@@ -25,6 +25,7 @@ const typeDefs = `
 
   # Possible input for Recordings
   input RecordData {
+    timestamp: UnixTimestamp
     food: String!
     foodGroup: String
     homemade: Boolean
@@ -33,6 +34,7 @@ const typeDefs = `
 
   # Possible input for Reports
   input ReportData {
+    timestamp: UnixTimestamp
     symptom: String!
   }
 
@@ -50,6 +52,13 @@ const typeDefs = `
 
   # The list of possible mutations
   type Mutation {
+
+    # Allows batch import of Records
+    batchRecord (data: [RecordData!]!): Boolean!
+
+    # Allows batch import of Reports
+    batchReport (data: [ReportData!]!): Boolean!
+
     # Record an entry to the food diary
     record (data: RecordData!): Boolean!
 
