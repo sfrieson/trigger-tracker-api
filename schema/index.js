@@ -3,20 +3,35 @@ import { makeExecutableSchema } from 'graphql-tools';
 import resolvers from './resolvers';
 
 const typeDefs = `
+  scalar UnixTimestamp
+
   # The data input for the record query
   type Record {
+    timestamp: UnixTimestamp
     food: String!
+    foodGroup: String
+    homemade: Boolean
+    solid: Boolean
+    attributes: [String]
   }
 
   type Report {
+    timestamp: UnixTimestamp
     symptom: String!
   }
 
+  # A union for both Records and Reports for history queries
+  union Data = Record | Report
+
+  # Possible input for Recordings
   input RecordData {
     food: String!
+    foodGroup: String
+    homemade: Boolean
+    attributes: [String!]
   }
 
-  # The data input for the report query
+  # Possible input for Reports
   input ReportData {
     symptom: String!
   }
@@ -28,6 +43,9 @@ const typeDefs = `
 
     # Retrieve the most recent reports
     reports (count: Int): [Report!]
+
+    # Retrieve past inputs
+    history (count: Int, windowLength: String, timeStart: UnixTimestamp): [Data!]
   }
 
   # The list of possible mutations
