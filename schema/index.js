@@ -29,6 +29,7 @@ const typeDefs = `
     food: String!
     foodGroup: String
     homemade: Boolean
+    solid: Boolean
     attributes: [String!]
   }
 
@@ -36,6 +37,7 @@ const typeDefs = `
   input ReportData {
     timestamp: UnixTimestamp
     symptom: String!
+    attributes: [String!]
   }
 
   # The list of possible queries
