@@ -15,7 +15,7 @@ app.use('/graphql', bodyParser.json(), graphqlExpress({schema}))
 app.use('/graphiql', graphiqlExpress({endpointURL: '/graphql'}))
 
 mongoose.Promise = global.Promise
-mongoose.connect(process.env.MONGOLAB_URI, {useMongoClient: true})
+mongoose.connect(process.env.MONGODB_URI, {useMongoClient: true})
 .then(function () {
   app.listen(process.env.PORT, () => console.log(`Listening on ${process.env.PORT}...`))
 })
