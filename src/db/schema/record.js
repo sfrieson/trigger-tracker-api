@@ -1,5 +1,5 @@
-import mongoose from 'mongoose';
-const { Schema } = mongoose;
+import mongoose from 'mongoose'
+const { Schema } = mongoose
 
 const recordSchema = new Schema({
   timestamp: Number,
@@ -8,11 +8,11 @@ const recordSchema = new Schema({
   homemade: Boolean,
   solid: Boolean,
   attributes: [String]
-});
+})
 
 recordSchema.pre('save', function (next) {
-  this.timestamp = Date.now();
-  next();
-});
+  this.timestamp = Date.now()
+  next()
+})
 
-export default mongoose.model('Record', recordSchema);
+export default mongoose.model('Record', recordSchema)

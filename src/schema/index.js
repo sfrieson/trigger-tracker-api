@@ -1,6 +1,6 @@
-import { makeExecutableSchema } from 'graphql-tools';
+import { makeExecutableSchema } from 'graphql-tools'
 
-import resolvers from './resolvers';
+import resolvers from './resolvers'
 
 const typeDefs = `
   scalar UnixTimestamp
@@ -67,6 +67,6 @@ const typeDefs = `
     # Report an adverse physical reaction
     report (data: ReportData!): Boolean!
   }
-`;
+`
 
-export default makeExecutableSchema({typeDefs, resolvers});
+export default makeExecutableSchema({typeDefs, resolvers})
