@@ -7,17 +7,19 @@ const typeDefs = `
 
   # The data input for the record query
   type Record {
-    timestamp: UnixTimestamp
+    attributes: [String]
     food: String!
     foodGroup: String
     homemade: Boolean
+    id: ID
     solid: Boolean
-    attributes: [String]
+    timestamp: UnixTimestamp
   }
 
   type Report {
-    timestamp: UnixTimestamp
+    id: ID
     symptom: String!
+    timestamp: UnixTimestamp
   }
 
   # A union for both Records and Reports for history queries
@@ -25,19 +27,19 @@ const typeDefs = `
 
   # Possible input for Recordings
   input RecordData {
-    timestamp: UnixTimestamp
+    attributes: [String!]
     food: String!
     foodGroup: String
     homemade: Boolean
     solid: Boolean
-    attributes: [String!]
+    timestamp: UnixTimestamp
   }
 
   # Possible input for Reports
   input ReportData {
-    timestamp: UnixTimestamp
-    symptom: String!
     attributes: [String!]
+    symptom: String!
+    timestamp: UnixTimestamp
   }
 
   # The list of possible queries
