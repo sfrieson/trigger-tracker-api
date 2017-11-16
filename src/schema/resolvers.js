@@ -13,6 +13,12 @@ const hrLength = minLength * 60
 const dayLength = hrLength * 24
 
 export default {
+  Record: {
+    id: ({_id}) => _id
+  },
+  Report: {
+    id: ({_id}) => _id
+  },
   Data: {
     __resolveType (obj, ctx, info) {
       if (obj.food) return 'Record'
@@ -76,6 +82,12 @@ export default {
     },
     report: function (_, {data}) {
       return Report.create(data)
+    },
+    deleteRecord: function (_, {id}) {
+      return Record.findById(id).remove()
+    },
+    deleteReport: function (_, {id}) {
+      return Report.findById(id).remove()
     }
   }
 }
