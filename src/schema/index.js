@@ -63,6 +63,12 @@ const typeDefs = `
     # Allows batch import of Reports
     batchReport (data: [ReportData!]!): Boolean!
 
+    # Delete a record from the diary
+    deleteRecord (id: ID!): Boolean!
+
+    # Delete an adverse physical reaction from the diary
+    deleteReport (id: ID!): Boolean!
+
     # Record an entry to the food diary
     record (data: RecordData!): Boolean!
 

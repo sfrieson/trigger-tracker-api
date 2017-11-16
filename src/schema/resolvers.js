@@ -82,6 +82,12 @@ export default {
     },
     report: function (_, {data}) {
       return Report.create(data)
+    },
+    deleteRecord: function (_, {id}) {
+      return Record.findById(id).remove()
+    },
+    deleteReport: function (_, {id}) {
+      return Report.findById(id).remove()
     }
   }
 }
