@@ -84,10 +84,10 @@ export default {
       return Report.create(data)
     },
     deleteRecord: function (_, {id}) {
-      return Record.findById(id).remove()
+      return Record.findById(id).remove().then(({n: numberDeleted}) => !!numberDeleted)
     },
     deleteReport: function (_, {id}) {
-      return Report.findById(id).remove()
+      return Report.findById(id).remove().then(({n: numberDeleted}) => !!numberDeleted)
     }
   }
 }
